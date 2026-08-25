@@ -33,6 +33,8 @@ function Dashboard() {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const[editId,setEditId]=useState<number|null>(null);
+
 
   const addEvent = () => {
     const newEvent: EventData = {
@@ -52,6 +54,32 @@ function Dashboard() {
   const deleteEvent = (id:number)=>{
       setEvents(events.filter((event)=>event.id!==id));
     };
+
+    const editEvent = (id:number)=>{
+      const event = events.find((event)=>event.id===id);
+
+      setEditId(id);
+
+      setTitle(event.title);
+      setDate(event.date);
+      setTime(event.time);
+    };
+
+   const saveEvent = (id:number) => {
+  const newEvents = events.map((event) => {
+    if(event.id===id){
+    return {
+      ...event,
+    title:title,
+    date:date,
+    time:time,
+    };
+  }
+  return event;
+  });
+  setEvents(newEvents);
+};
+
 
   return (
     <div>
@@ -76,13 +104,23 @@ function Dashboard() {
         onChange={(e) => setTime(e.target.value)}
       />
 
+      
       <button onClick={addEvent}>追加</button>
+ <button
+  onClick={() => {
+    if (editId !== null) {
+      saveEvent(editId);
+    }
+  }}> 保存
+</button>
+
 
       <div>
         {events.map((event) => (
           <Event
             key={event.id}
             deleteEvent={deleteEvent}
+            editEvent={editEvent}
             id={event.id}
             title={event.title}
             date={event.date}
