@@ -91,6 +91,9 @@ const cancelEvent =()=>{
   setTime("");
 }
 
+const filterEvnts = events.filter((event)=>event.date===date);
+console.log(filterEvnts);
+
 
   return (
     <div>
@@ -141,7 +144,7 @@ const cancelEvent =()=>{
 
 
       <div>
-        {events.map((event) => (
+        {filterEvnts.map((event) => (
           <Event
             key={event.id}
             deleteEvent={deleteEvent}
