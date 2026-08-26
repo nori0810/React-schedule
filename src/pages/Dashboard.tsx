@@ -78,7 +78,18 @@ function Dashboard() {
   return event;
   });
   setEvents(newEvents);
+  setEditId(null);
+  setTitle("");
+  setDate("");
+  setTime("");
 };
+
+const cancelEvent =()=>{
+  setEditId(null);
+  setTitle("");
+  setDate("");
+  setTime("");
+}
 
 
   return (
@@ -106,13 +117,27 @@ function Dashboard() {
 
       
       <button onClick={addEvent}>追加</button>
+
+{editId !== null &&(
  <button
   onClick={() => {
-    if (editId !== null) {
+    
       saveEvent(editId);
-    }
+    
   }}> 保存
 </button>
+)}
+
+{editId !== null && (
+  <button
+    onClick={() => {
+      cancelEvent();
+    }}
+  >
+    キャンセル
+  </button>
+)}
+
 
 
       <div>
