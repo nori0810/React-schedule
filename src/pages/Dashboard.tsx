@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Event from "../components/Event";
+import Calendar from "../components/Calendar";
 
 type EventData = {
   id: number;
@@ -45,6 +46,8 @@ function Dashboard() {
     };
 
     setEvents([...events, newEvent]);
+
+    
 
     setTitle("");
     setDate("");
@@ -98,7 +101,7 @@ console.log(filterEvnts);
   return (
     <div>
       <h1>予定表</h1>
-
+<Calendar events={events}/>
       <input
         type="text"
         placeholder="予定"
