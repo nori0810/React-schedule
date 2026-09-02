@@ -35,11 +35,12 @@ function Dashboard() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const[editId,setEditId]=useState<number|null>(null);
+  const[month,setMonth] = useState("2026-08");
 
 
   const addEvent = () => {
     const newEvent: EventData = {
-      id: events.length + 1,
+      id: Date.now(),
       title,
       date,
       time,
@@ -60,6 +61,8 @@ function Dashboard() {
 
     const editEvent = (id:number)=>{
       const event = events.find((event)=>event.id===id);
+
+      if(!event) return;
 
       setEditId(id);
 
@@ -101,7 +104,7 @@ console.log(filterEvnts);
   return (
     <div>
       <h1>予定表</h1>
-<Calendar events={events}/>
+<Calendar events={events} month = {month}/>
       <input
         type="text"
         placeholder="予定"
