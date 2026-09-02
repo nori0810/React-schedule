@@ -7,14 +7,16 @@ type EventData = {
   time: string;
 };
 
-function Calendar({ events }: { events: EventData[] }) {
+function Calendar({
+  events,
+  month,
+}: {
+  events: EventData[];
+  month: string;
+}) {
   console.log(events);
 
   const day = Array.from({ length: 31 }, (_, i) => i + 1);
-
-  const hasEvent = events.some((event) => event.date === day);
-
-  console.log(hasEvent);
 
   return (
     <div>
@@ -22,9 +24,13 @@ function Calendar({ events }: { events: EventData[] }) {
 
       <div className="Days">
         {day.map((checkNow) => {
+          const hasEvent = events.some(
+            (event) => event.date === month + "-" + checkNow
+          );
+
           return (
             <div className="dateBox">
-              <div className="date"></div>
+              <div className="date">{checkNow}</div>
 
               {hasEvent && (
                 <div className="dot">●</div>
