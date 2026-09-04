@@ -39,9 +39,7 @@ function Calendar({
           );
         })}
 
-        <div className="dateBox">
-          <div className="date">24</div>
-        </div>
+       
       </div>
     </div>
   );
