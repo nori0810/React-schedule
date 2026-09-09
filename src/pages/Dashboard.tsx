@@ -37,6 +37,14 @@ function Dashboard() {
   const[editId,setEditId]=useState<number|null>(null);
   const[month,setMonth] = useState("2026-08");
 
+    const nextMonth = () =>{
+      const nextMonthNumber = Number(month.slice(5))+1;
+      const nextMonthString = String(nextMonthNumber);
+      const padMonth = nextMonthString.padStart(2, "0");
+
+      setMonth("2026-"+padMonth);
+  };
+  
 
   const addEvent = () => {
     const newEvent: EventData = {
@@ -126,6 +134,7 @@ console.log(filterEvnts);
 
       
       <button onClick={addEvent}>追加</button>
+      <button onClick={nextMonth}>次の月</button>
 
 {editId !== null &&(
  <button
