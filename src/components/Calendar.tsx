@@ -15,12 +15,17 @@ function Calendar({
   month: string;
 }) {
   console.log(events);
+  
 
   const day = Array.from({ length: 31 }, (_, i) => i + 1);
+
+const year = month.slice(0,4)
+    const monthNumber = month.slice(6)
 
   return (
     <div>
       <h2>カレンダー</h2>
+    <div>{year}年{month}月</div>
 
       <div className="Days">
         {day.map((checkNow) => {
@@ -39,7 +44,7 @@ function Calendar({
           );
         })}
 
-       
+        
       </div>
     </div>
   );
